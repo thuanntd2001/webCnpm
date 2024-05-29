@@ -1,0 +1,92 @@
+package springboot.entity;
+
+import java.util.Collection;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import lombok.Data;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
+@Data
+@Entity
+@Table(name = "NHANVIEN")
+public class NhanVienEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MANV")
+	private Long maNV;
+
+	@Column(name = "HOTEN")
+	private String hoTen;
+
+	@Column(name = "NGAYSINH")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd-MMM-yyyy")
+	private Date ngaySinh;
+
+	@Column(name = "GIOITINH")
+	private Boolean gioiTinh;
+
+	@Column(name = "LUONG")
+	private Integer luong;
+
+	@Column(name = "SDT")
+	private String sdt;
+
+	@Column(name = "CMND")
+	private String cmnd;
+
+	@Column(name = "DIACHI")
+	private String diaChi;
+
+	@Column(name = "NGAYVAOLAM")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd-MMM-yyyy")
+	private Date ngayVaoLam;
+
+	@Column(name = "TRANGTHAI")
+	private Integer trangThai;
+
+	@OneToMany(mappedBy = "nvThucHien", fetch = FetchType.LAZY)
+	private Collection<DDHEntity> ddhs;
+	
+	
+	@Column(name="USERNAME")
+	private String userName;
+	
+	@OneToOne
+	@JoinColumn(name="MANV")
+	private NhanVienEntity usernv;
+	
+	@Column(name="PASSWD")
+	private String passwd;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="ROLEID")
+	private ChucVuEntity chucVu;
+
+	@Column(name ="EMAIL")
+	private String email;
+	
+	@Column(name="ICON")
+	private String icon;
+
+
+	
+
+}

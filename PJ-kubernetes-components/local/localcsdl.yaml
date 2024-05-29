@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csdl-deployment
+  labels:
+    app: csdl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: csdl
+  template:
+    metadata:
+      labels:
+        app: csdl
+    spec:
+
+#      volumes:
+#      - name: mysql-persistent-storage
+#        persistentVolumeClaim:
+#          claimName: mysql-pv-claim
+      containers:
+      - name: csdl
+        image: csdl:lc1
+        ports:
+        - containerPort: 3306
+#        volumeMounts:
+#        - name: mysql-persistent-storage
+#          mountPath: /var/lib/data
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: secret
+              key: root-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: csdl-service
+spec:
+  selector:
+    app: csdl
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306

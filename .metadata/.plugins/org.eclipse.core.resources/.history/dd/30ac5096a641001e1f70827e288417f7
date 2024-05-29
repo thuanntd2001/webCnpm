@@ -1,0 +1,41 @@
+package springboot.service;
+
+import springboot.dto.MyUser;
+import springboot.entity.ChucVuEntity;
+import springboot.entity.NhanVienEntity;
+import springboot.repository.NhanVienRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service(value = "userCustomService")
+public class CustomUserDetailsService implements UserDetailsService {
+
+	@Autowired
+	private NhanVienRepository NhanVienRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		NhanVienEntity NhanVienEntity = NhanVienRepository.findOneByUserNameAndTrangThai(username, 1);
+		if (NhanVienEntity != null) {
+			List<GrantedAuthority> authorities = new ArrayList<>();
+			for (ChucVuEntity item : NhanVienEntity.getChucVus()) {
+				authorities.add(new SimpleGrantedAuthority("ROLE_" + item.getTenChucVu()));
+			}
+			MyUser myUserDetail = new MyUser(NhanVienEntity.getUserName(), NhanVienEntity.getPasswd(), true, true, true,
+					true, authorities);
+			BeanUtils.copyProperties(NhanVienEntity, myUserDetail);
+			return myUserDetail;
+		} else {
+			throw new UsernameNotFoundException("User not found");
+		}
+	}
+}

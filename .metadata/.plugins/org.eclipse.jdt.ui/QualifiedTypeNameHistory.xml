@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="springboot.entity.KhachHangEntity"/>
+    <fullyQualifiedTypeName name="springboot.entity.NhanVienEntity"/>
+    <fullyQualifiedTypeName name="springboot.dto.KhachHangDTO"/>
+</qualifiedTypeNameHistroy>

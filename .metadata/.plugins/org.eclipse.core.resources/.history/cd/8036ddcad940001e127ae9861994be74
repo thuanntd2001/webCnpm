@@ -1,0 +1,12 @@
+package springboot.dto;
+
+import lombok.Data;
+
+@Data
+public class ChucVuDTO {
+	private long id;
+	private String tenChucVu;
+
+	
+	
+}

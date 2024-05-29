@@ -1,0 +1,30 @@
+package springboot.dto;
+
+import java.util.Date;
+
+public class KhachHangDTO {
+	private Long ID;
+	private String hoTen;
+	private Date ngaySinh;
+	private boolean gioiTinh;
+	private String sdt;
+	private String diaChi;
+	private int trangThai;
+	
+	private String userName;
+
+	private String passwd;
+
+	private Integer status;
+
+	private String email;
+
+	private String icon;
+
+	private String maXacThuc;
+	private Date ngayDangKy;
+
+	
+	
+	
+}
