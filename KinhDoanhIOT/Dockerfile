@@ -5,8 +5,11 @@ FROM tomcat:8.5-jdk8
 COPY target/dichvu*.war /usr/local/tomcat/webapps/dichvu.war
 
 COPY server.xml /usr/local/tomcat/conf/server.xml
+
+
 # Mở cổng 8080 để truy cập ứng dụng thông qua trình duyệt
 EXPOSE 8080
 
+ENV API_SERVER localhost
 
 CMD ["catalina.sh", "run"]
