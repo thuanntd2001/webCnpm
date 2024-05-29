@@ -15,7 +15,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-build
+#build
   build:
 
     runs-on: ubuntu-latest
@@ -35,10 +35,10 @@ build
       #web
     - name: Build web with Maven
       run: mvn -B package --file KinhDoanhIOT/pom.xml
-end build
+#end build
 
       
-docker      
+#docker      
 
       #api  
     - uses: mr-smithers-excellent/docker-build-push@v6
