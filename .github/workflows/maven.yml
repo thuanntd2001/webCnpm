@@ -87,11 +87,11 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
 
             # Dừng và gỡ bỏ container hiện tại (nếu có)
-            docker stop api
-            docker rm api
+            docker stop api  > /dev/null
+            docker rm api > /dev/null
 
-            docker stop web
-            docker rm web
+            docker stop web > /dev/null
+            docker rm web > /dev/null
 
             # Chạy container mới với image đã pull về bên trên
             docker run -d network=host --name api ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ github.sha }}
