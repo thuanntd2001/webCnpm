@@ -20,6 +20,9 @@ COPY target/$APP_NAME.jar $APP_HOME
 WORKDIR $APP_HOME
 EXPOSE 8081
 
-
+ENV API_SERVER localhost
+ENV DB_SERVER localhost
+ENV DB_USERNAME root
+ENV DB_PASSWORD password
 # Chạy ứng dụng khi container được khởi động
 CMD java -jar $APP_NAME.jar
