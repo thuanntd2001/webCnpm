@@ -83,8 +83,8 @@ jobs:
 
             # Pull image mà được push lên DockerHub bên trên
 
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ github.sha }}
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ github.sha }}
+            docker pull ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
+            docker pull ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
 
             # Dừng và gỡ bỏ container hiện tại (nếu có)
             docker stop api
