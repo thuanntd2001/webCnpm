@@ -84,7 +84,7 @@ jobs:
             # Pull image mà được push lên DockerHub bên trên
 
             docker pull ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
-            docker pull ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
+            docker pull ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
 
             # Dừng và gỡ bỏ container hiện tại (nếu có)
             docker stop api  2> /dev/null
@@ -94,7 +94,7 @@ jobs:
             docker rm web 2> /dev/null
 
             # Chạy container mới với image đã pull về bên trên
-            docker run -d network=host --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
-            docker run -d network=host --name web ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
+            docker run -d --network=host --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
+            docker run -d --network=host --name web ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
 
  
