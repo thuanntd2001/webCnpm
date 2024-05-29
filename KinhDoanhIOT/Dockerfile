@@ -9,7 +9,8 @@ COPY server.xml /usr/local/tomcat/conf/server.xml
 
 # Mở cổng 8080 để truy cập ứng dụng thông qua trình duyệt
 EXPOSE 8080
+EXPOSE 8081
 
-ENV API_SERVER 031001.xyz
+ENV API_SERVER localhost
 
 CMD ["catalina.sh", "run"]
