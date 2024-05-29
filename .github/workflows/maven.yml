@@ -94,7 +94,7 @@ jobs:
             docker rm web
 
             # Chạy container mới với image đã pull về bên trên
-            docker run -d network host --name api ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ github.sha }}
-            docker run -d network host --name web ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.sha }}
+            docker run -d network=host --name api ${{ secrets.DOCKERHUB_USERNAME }}/api:${{ github.sha }}
+            docker run -d network=host --name web ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.sha }}
 
  
