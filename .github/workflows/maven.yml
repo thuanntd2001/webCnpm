@@ -6,73 +6,63 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 #
-#name: Java CI with Maven
-#
-#on:
-#  push:
-#    branches: [ "main" ]
-#  pull_request:
-#    branches: [ "main" ]
-#
-#jobs:
-#build
-#  build:
-#
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    - uses: actions/checkout@v3
-#    
-#    - name: Set up JDK
-#      uses: actions/setup-java@v3
-#      with:
-#        java-version: '11'
-#        distribution: 'temurin'
-#        cache: maven
-#      #api
-#    - name: Build api with Maven
-#      run: mvn -B package --file api/pom.xml
-#      #web
-#    - name: Build web with Maven
-#      run: mvn -B package --file KinhDoanhIOT/pom.xml
-#end build
-#
-#      
-#docker      
-#      #csdl
-#    - uses: mr-smithers-excellent/docker-build-push@v6
-#      name: Build & push csdl Docker image
-#      with:
-#        image: thuanntd2001/csdl
-#        tags: v3, latest
-#        registry: docker.io
-#        dockerfile: database/Dockerfile
-#        directory: ./database
-#        username: ${{ secrets.DOCKER_USERNAME }}
-#        password: ${{ secrets.DOCKER_PASSWORD }}
-#      #api  
-#    - uses: mr-smithers-excellent/docker-build-push@v6
-#      name: Build & push api Docker image
-#      with:
-#        image: thuanntd2001/api
-#        tags: v2, latest
-#        registry: docker.io
-#        dockerfile: api/Dockerfile
-#        directory: ./api
-#
-#        username: ${{ secrets.DOCKER_USERNAME }}
-#        password: ${{ secrets.DOCKER_PASSWORD }}
-#        
-#      #web  
-#    - uses: mr-smithers-excellent/docker-build-push@v6
-#      name: Build & push web Docker image
-#      with:
-#        image: thuanntd2001/web
-#        tags: v2, latest
-#        registry: docker.io
-#        dockerfile: KinhDoanhIOT/Dockerfile
-#        directory: ./KinhDoanhIOT
-#
-#        username: ${{ secrets.DOCKER_USERNAME }}
-#        password: ${{ secrets.DOCKER_PASSWORD }}
-#  # end docker      
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+build
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+      #api
+    - name: Build api with Maven
+      run: mvn -B package --file api/pom.xml
+      #web
+    - name: Build web with Maven
+      run: mvn -B package --file KinhDoanhIOT/pom.xml
+end build
+
+      
+docker      
+
+      #api  
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push api Docker image
+      with:
+        image: thuanntd2001/api
+        tags: v2, latest
+        registry: docker.io
+        dockerfile: api/Dockerfile
+        directory: ./api
+
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+      #web  
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push web Docker image
+      with:
+        image: thuanntd2001/web
+        tags: v2, latest
+        registry: docker.io
+        dockerfile: KinhDoanhIOT/Dockerfile
+        directory: ./KinhDoanhIOT
+
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+  # end docker      
