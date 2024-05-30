@@ -82,18 +82,18 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           # Pull image mà được push lên DockerHub bên trên
-        docker pull ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
-        docker pull ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
+          docker pull ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
+          docker pull ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
 
           # Dừng và gỡ bỏ container hiện tại (nếu có)
-        docker stop api  2> /dev/null
-        docker rm api 2> /dev/null
+          docker stop api  2> /dev/null
+          docker rm api 2> /dev/null
 
-        docker stop web 2> /dev/null
-        docker rm web 2> /dev/null
+          docker stop web 2> /dev/null
+          docker rm web 2> /dev/null
 
           # Chạy container mới với image đã pull về bên trên
 #        docker run -d --network=host --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
-        docker run -d -p 3306:3306 -p 8081:8081 --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
-        docker run -d --network=host --name web ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
+          docker run -d -p 3306:3306 -p 8081:8081 --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
+          docker run -d --network=host --name web ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
 
