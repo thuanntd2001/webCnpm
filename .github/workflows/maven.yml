@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 #
-name: Java CI with Maven
+name: Java CI/CD with Maven
 
 on:
   push:
@@ -94,7 +94,8 @@ jobs:
             docker rm web 2> /dev/null
 
             # Chạy container mới với image đã pull về bên trên
-            docker run -d --network=host --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
+#            docker run -d --network=host --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
+            docker run -d -p 3306:3306 -p 8081:8081 --name api ${{ secrets.DOCKER_USERNAME }}/api:${{ github.sha }}
             docker run -d --network=host --name web ${{ secrets.DOCKER_USERNAME }}/web:${{ github.sha }}
 
  
