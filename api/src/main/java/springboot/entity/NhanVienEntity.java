@@ -24,7 +24,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Data;
 
 
-@Data
 @Entity
 @Table(name = "NHANVIEN")
 public class NhanVienEntity {
