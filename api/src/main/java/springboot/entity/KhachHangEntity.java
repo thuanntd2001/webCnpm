@@ -18,7 +18,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "KHACHHANG")
 public class KhachHangEntity {
